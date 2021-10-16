@@ -22,11 +22,14 @@
 #### ⚠️ This module only works on Windows
 #### ⚠️ python 3.6 or greater **required** <sup><sub>python 3.10 or greater recommended</sub></sup>
 </br>
+
 To install this module using pip:
 ```
 py -m pip install yetimenu
 ```
+
 </br>
+
 I always try to keep the most up-to-date version on pypi, but in case you need to install the most up-to-date version from github:
 ```
 $ git clone https://github.com/readyyeti/yetimenu
