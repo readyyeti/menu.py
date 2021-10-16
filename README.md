@@ -1,4 +1,4 @@
-# yetimenu
+# yetimenu.py
 <sup><sub>created by deadyeti (deadyeti@deadyeti.ca)</sub></sup>
 
 ## introduction ##
@@ -25,14 +25,14 @@
 
 To install this module using pip:
 ```
-py -m pip install yetimenu
+py -m pip install yetimenu.py
 ```
 
 </br>
 
 I always try to keep the most up-to-date version on pypi, but in case you need to install the most up-to-date version from github:
 ```
-$ git clone https://github.com/readyyeti/yetimenu
+$ git clone https://github.com/readyyeti/yetimenu.py
 $ cd yetimenu
 $ python 3 -m pip install
 ```
