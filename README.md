@@ -36,3 +36,43 @@ $ git clone https://github.com/readyyeti/yetimenu.py
 $ cd yetimenu
 $ python 3 -m pip install
 ```
+</br>
+
+## Quick Example ##
+
+```py
+import yetimenu.py as menu
+
+app_name = 'example'
+theme = 'purple'
+
+def main_menu()
+
+   page_name = 'main menu'
+   text = [
+      'please choose from the following options:'
+   ]
+   options = [
+      'option #1',    # CASE 1
+      'option #2',    # CASE 2
+      '_skip_',       # _skip_ is ignored by yetimenu
+      'exit'          # CASE 3
+   ]
+
+   menu_type = 'selection'
+   selection = m.generate(menu_type, theme, app_name, page_name, options, text)
+
+   match selection
+      case 1:
+         print('option 1')
+      case 2:
+         print('option 2')
+      case 3:
+         m._exit_()
+   
+   return
+
+main_menu()
+
+```
+
