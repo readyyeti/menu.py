@@ -9,17 +9,16 @@
 
 ## key features ##
 
-   ✔️ fast and efficient
-   ✔️ supports the use of colors
-   ✔️ variable refresh-rate
-   ✔️ easy to use
-   ✔️ actively supported
+   ✔️ fast and efficient\n
+   ✔️ supports the use of colors/n
+   ✔️ variable refresh-rate\n
+   ✔️ easy to use\n
+   ✔️ actively supported\n
 
 ## Installation ##
 
-### ⚠️ This module only works on Windows ###
-### ⚠️ python 3.6 or greater **required** ###
-### python 3.10 or greater *recommended* ###
+#### ⚠️ This module only works on Windows ####
+#### ⚠️ python 3.6 or greater **required** <sup><sub>python 3.10 or greater recommended</sub></sup>####
 
 To install this module using pip:
 `py -m pip install yetimenu`
