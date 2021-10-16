@@ -152,7 +152,7 @@ def user_select(valid_choices): # ....DEPRECATED....
         selection = int(choice)
         return selection
 
-def _exit_():
+def terminate():
     cls()
     exit()
 

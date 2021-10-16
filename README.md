@@ -40,7 +40,7 @@ $ python 3 -m pip install
 
 ## Quick Example ##
 
-```py
+```python
 import yetimenu.py as menu
 
 app_name = 'example'
@@ -62,13 +62,13 @@ def main_menu()
    menu_type = 'selection'
    selection = m.generate(menu_type, theme, app_name, page_name, options, text)
 
-   match selection
+   match selection:
       case 1:
          print('option 1')
       case 2:
          print('option 2')
       case 3:
-         m._exit_()
+         m.terminate()
    
    return
 
