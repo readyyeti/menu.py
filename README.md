@@ -3,7 +3,7 @@
 
 ## introduction ##
 
-**yetimenu** is a lightweight and simple python module used to quickly and efficiently create in-terminal menus. Using **yetimenu**, a developer can either create a selection menu, where users select an option from a pre-determined list of options, or a user-input menu, where users type their input.
+**yetimenu.py** is a lightweight and easy-to-use python module used to quickly and efficiently create in-terminal menus that work in both *Command Prompt* and *Windows PowerShell*. Using **yetimenu.py**, a developer can either create a selection menu, where users select an option from a pre-determined list of options, or a user-input menu, where users type their input.
 
 <sup><sub>**Note**:**yetimenu** *only displays a menu and returns the user selection/input, it does not handle user selection/input*. For a more in-depth look at how yetimenu works, please look at yetimenu/example.py</sub></sup>
 </br>
@@ -75,4 +75,6 @@ def main_menu()
 main_menu()
 
 ```
+</br>
 
+For a more in-depth example, check out the *examples.py* file
