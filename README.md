@@ -17,8 +17,8 @@
 
 ## Installation ##
 
-#### ⚠️ This module only works on Windows ####
-#### ⚠️ python 3.6 or greater **required** <sup><sub>python 3.10 or greater recommended</sub></sup>####
+#### ⚠️ This module only works on Windows
+#### ⚠️ python 3.6 or greater **required** <sup><sub>python 3.10 or greater recommended</sub></sup>
 
 To install this module using pip:
 `py -m pip install yetimenu`
