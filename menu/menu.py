@@ -10,9 +10,11 @@ bDebug:bool = False
 
 version = '0.1.6'
 __all__= (
-    'cprint(object)'
-    'version'
-    'eprint(object)'
+    'version',
+    'generate',
+    'terminate',
+    'cprint',
+    'eprint'
 )
 
 last_page = ''

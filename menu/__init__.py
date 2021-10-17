@@ -9,15 +9,15 @@ MIT License, see LICENSE for more details.
 """
 
 # import functions
-from .menu import generate
-from .menu import terminate
+#from .menu import generate
+#from .menu import terminate
 
 # import classes
-from .menu import cprint
-from .menu import eprint
+#from .menu import cprint
+#from .menu import eprint
 
 # import variables
-from .menu import version
+from .menu import *
 
 __all__ = [
     'generate',
