@@ -1,9 +1,7 @@
+# file types to ignore
 *.py[cod]
 *.log
 *.egg-info
-venv
-.venv
-** /__pycache__/
 *.buildinfo
 *.mp3
 *.m4a
@@ -13,3 +11,6 @@ venv
 *.flac
 *.mo
 *.toml
+
+# directories to ignore:
+/__pycache__
