@@ -21,8 +21,8 @@ from .menu import *
 
 __all__ = [
     'generate',
-    'cprint(object)',
-    'eprint(object)',
+    'cprint',
+    'eprint',
     'terminate',
     '__title__',
     '__author__',
