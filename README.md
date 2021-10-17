@@ -1,5 +1,5 @@
 # menu.py
-<img alt="PyPI" src="https://img.shields.io/pypi/v/menu.py?color=green&label=menu.py&style=flat-square"> <img alt="PyPI - Status" src="https://img.shields.io/pypi/status/menu.py?style=flat-square"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/menu.py?style=flat-square"> <img alt="PyPI - License" src="https://img.shields.io/pypi/l/menu.py?style=flat-square"> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/readyyeti/menu.py?style=flat-square">
+<img alt="PyPI" src="https://img.shields.io/pypi/v/menu.py?color=black&label=menu.py&style=flat-square"> <img alt="PyPI - Status" src="https://img.shields.io/pypi/status/menu.py?style=flat-square"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/menu.py?style=flat-square"> <img alt="PyPI - License" src="https://img.shields.io/pypi/l/menu.py?style=flat-square"> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/readyyeti/menu.py?style=flat-square">
 
 <sup><sub>created by deadyeti (deadyeti@deadyeti.ca)</sub></sup></br>
 <sup><sub>last updated 2021-OCT-17</sub></sup>
