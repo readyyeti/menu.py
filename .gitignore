@@ -3,7 +3,7 @@
 *.egg-info
 venv
 .venv
-/__pycache__
+docs/__pycache__
 yetimenu/__pycache__
 *.buildinfo
 *.mp3
