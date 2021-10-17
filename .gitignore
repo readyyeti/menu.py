@@ -17,7 +17,7 @@ desktop.ini
 test.py
 
 # directories to ignore:
-/__pycache__
+__pycache__/
 /__bats__
 /build
 /dist
