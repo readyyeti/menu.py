@@ -8,7 +8,7 @@ from platform import python_version, system, python_version_tuple
 
 bDebug:bool = False
 
-version = '0.1.8'
+version = '0.1.9'
 __all__= (
     'version',
     'generate',
