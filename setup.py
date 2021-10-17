@@ -4,20 +4,20 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 packages = [
-    'yetimenu'
+    'menu'
 ]
 
 setup(
-    name="yetimenu",
-    version="0.0.16",
+    name="menu.py",
+    version="0.1.0",
     author="deadyeti",
     author_email="deadyeti@deadyeti.ca",
-    description="A simple in-terminal menu solution for managin user-input",
+    description="A simple in-terminal menu solution for Windows",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/readyyeti/menu.py",
     project_urls={
-        "Bug Tracker": "https://github.com/pypa/sampleproject/issues",
+        "Bug Tracker": "https://github.com/readyyeti/menu.py/issues",
     },
     packages=packages,
     classifiers=[

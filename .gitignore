@@ -12,5 +12,11 @@
 *.mo
 *.toml
 
+# files to ignore:
+desktop.ini
+
 # directories to ignore:
 /__pycache__
+/__bats__
+/build
+/dist
