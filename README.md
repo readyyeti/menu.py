@@ -1,10 +1,15 @@
 # menu.py
-<sup><sub>created by deadyeti (deadyeti@deadyeti.ca)</sub></sup>
-<sup><sub>last updated 2021-OCT-16</sub></sup>
+<img alt="PyPI - Status" src="https://img.shields.io/pypi/status/menu.py?style=flat-square"> <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/menu.py?style=flat-square"> <img alt="PyPI - License" src="https://img.shields.io/pypi/l/menu.py?style=flat-square"> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/readyyeti/menu.py?style=flat-square">
+
+<sup><sub>created by deadyeti (deadyeti@deadyeti.ca)</sub></sup></br>
+<sup><sub>last updated 2021-OCT-17</sub></sup>
 
 ## Introduction ##
 
-**menu.py** is a lightweight and easy-to-use python module used to quickly and efficiently create in-terminal menus that work in both *Command Prompt* and *Windows PowerShell*. Using **menu.py**, a developer can either create a selection menu, where users select an option from a pre-determined list of options, or a user-input menu, where users type their input.
+**menu.py** is still in the early stages of development, it is not recommended that you download this package at this time.
+</br>
+
+**menu.py** is a lightweight and easy-to-use python module used to quickly and efficiently create in-terminal menus that work in both *Command Prompt* and *Windows PowerShell*. Using **menu.py**, a developer can either create a selection menu, where users select an option from a pre-determined list of options, ~~or a user-input menu, where users type their input.~~ (in development)
 </br>
 
 

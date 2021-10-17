@@ -32,6 +32,10 @@ setup(
         "Natural Language :: English",
         "Development Status :: 1 - Planning",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.6",
         "License :: OSI Approved :: MIT License",
         "Operating System :: Microsoft :: Windows",
     ]
