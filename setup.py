@@ -30,7 +30,7 @@ setup(
     packages=packages,
     classifiers=[
         "Natural Language :: English",
-        "Development Status :: 1 - Planning",
+        "Development Status :: 2 - Pre-Alpha",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.8",
