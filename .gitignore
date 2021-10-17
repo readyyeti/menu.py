@@ -3,8 +3,7 @@
 *.egg-info
 venv
 .venv
-docs/__pycache__
-gen __pycache__
+** /__pycache__/
 *.buildinfo
 *.mp3
 *.m4a
