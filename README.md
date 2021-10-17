@@ -44,7 +44,7 @@ $ python 3 -m pip install
 ## Quick Example ##
 
 ```python
-import yetimenu.py as menu
+from menu import *
 
 app_name = 'example'
 theme = 'purple'
@@ -63,7 +63,7 @@ def main_menu()
    ]
 
    menu_type = 'selection'
-   selection = m.generate(menu_type, theme, app_name, page_name, options, text)
+   generate(menu_type, theme, app_name, page_name, options, text)
 
    match selection:
       case 1:
@@ -80,4 +80,4 @@ main_menu()
 ```
 </br>
 
-For a more in-depth example, check out the *examples.py* file
+For a more in-depth example, check out the *example.py* file
