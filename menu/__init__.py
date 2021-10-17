@@ -8,14 +8,21 @@ copyright (c) 2021-present deadyeti
 MIT License, see LICENSE for more details.
 """
 
+# import functions
 from .menu import generate
-from .menu import cprint
 from .menu import terminate
+
+# import classes
+from .menu import cprint
+from .menu import eprint
+
+# import variables
 from .menu import version
 
 __all__ = [
     'generate',
     'cprint',
+    'eprint',
     'terminate',
     '__title__',
     '__author__',
