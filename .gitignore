@@ -14,6 +14,7 @@
 
 # files to ignore:
 desktop.ini
+test.py
 
 # directories to ignore:
 /__pycache__

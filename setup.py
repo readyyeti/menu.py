@@ -9,7 +9,7 @@ packages = [
 
 setup(
     name="menu.py",
-    version="0.1.0",
+    version="0.1.2",
     author="deadyeti",
     author_email="deadyeti@deadyeti.ca",
     description="A simple in-terminal menu solution for Windows",

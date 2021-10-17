@@ -27,14 +27,14 @@
 
 To install this module using pip:
 ```
-py -m pip install yetimenu.py
+py -m pip install menu.py
 ```
 
 </br>
 
 I always try to keep the most up-to-date version on pypi, but in case you need to install the most up-to-date version from github:
 ```
-$ git clone https://github.com/readyyeti/yetimenu.py
+$ git clone https://github.com/readyyeti/menu.py
 $ cd yetimenu
 $ python 3 -m pip install
 ```

@@ -8,11 +8,16 @@ from platform import python_version, system, python_version_tuple
 
 bDebug:bool = False
 
-last_page = ''
-last_theme = ''
+version = '0.1.3'
 __all__= (
     'cprint(object)'
+    'version'
+    'eprint(object)'
 )
+
+last_page = ''
+last_theme = ''
+choice = 1
 
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CLASSES 
 
@@ -57,6 +62,25 @@ class menu_option(object):
     def select(self):
         return self.number
 
+class cprint(object):
+
+    def __init__(self, msg:str, newline=True):
+        self.msg = msg
+        if newline == True:
+            print(f'\n {c.text}{self.msg}{c.end}')
+        else:
+            print(f' {c.text}{self.msg}{c.end}')
+
+class eprint(object):
+
+    def __init__(self, msg:str, newline:bool=True):
+        self.msg = msg
+        if newline == True:
+            print(f'\n {c.error}*{self.msg}{c.end}')
+        else:
+            print(f' {c.error}*{self.msg}{c.end}')
+
+
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FUNCTIONS 
 
 #check that user is using the correct OS and version of python
@@ -90,7 +114,7 @@ def set_theme(theme):
     elif theme.lower() in ['red', 'rouge']:
         c.text = '\033[31m'
         c.highlight = '\033[41m\033[30m'
-        c.error = '\033[91m'
+        c.error = '\33[33m'
         c.title = '\033[41m\033[30m'
         c.page = '\033[31m'
     # green theme
@@ -118,7 +142,7 @@ def set_theme(theme):
     elif theme.lower() in ['red/purple', 'rouge/mauve', 'rouge/violet', 'red/violet']:
         c.text = '\033[31m'
         c.highlight = '\033[41m\033[30m'
-        c.error = '\033[91m'
+        c.error = '\33[33m'
         c.title = '\33[45m\033[30m'
         c.page = '\33[35m\033[1m'
 
@@ -165,6 +189,7 @@ def generate(type:str, theme, program_name, page_name, menu_items:list, menu_tex
     author: deadyeti
 
     '''
+    global choice 
 
     # generate the desired menu
     if type.lower() in ['input', 'i']:
