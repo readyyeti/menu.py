@@ -1,7 +1,15 @@
 from setuptools import setup
+import re
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+
+version = ''
+with open('menu/menu.py') as f:
+    version = re.search(r'^version\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+
+if not version:
+    raise RuntimeError('version is not set')
 
 packages = [
     'menu'
@@ -9,7 +17,7 @@ packages = [
 
 setup(
     name="menu.py",
-    version="0.1.4",
+    version=version,
     author="deadyeti",
     author_email="deadyeti@deadyeti.ca",
     description="A simple in-terminal menu solution for Windows",
