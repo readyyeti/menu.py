@@ -25,7 +25,7 @@ choice = 1
 
 # this class is used to quickly create different text color in the python terminal
 
-class yetimenuException(Exception):
+class menuException(Exception):
     def __init__ (self, message):
         self.message = message
 
@@ -87,9 +87,9 @@ class eprint(object):
 
 #check that user is using the correct OS and version of python
 if system().lower() != 'windows':
-    raise yetimenuException(f'invalid operating system: "{system()}"\nyetimenu currently only works on windows machines.')
+    raise menuException(f'invalid operating system: "{system()}"\nyetimenu currently only works on windows machines.')
 if int(python_version_tuple()[0]) < 3 or int(python_version_tuple()[1]) < 6:
-    raise yetimenuException(f'invalid python version: "{python_version()}"\nyetimenu makes use of features, such as f-strings, that require python 3.6 or newer.')
+    raise menuException(f'invalid python version: "{python_version()}"\nyetimenu makes use of features, such as f-strings, that require python 3.6 or newer.')
 
 # function that clears the python terminal screen when called
 def cls():
@@ -204,7 +204,7 @@ def generate(type:str, theme, program_name, page_name, menu_items:list, menu_tex
     elif type.lower() in ['sel', 'select', 'selection', 's']:
         pass
     else:
-        raise yetimenuException(f'invalid menu type: "{type}"\nvalid choices are: selection, input (these can also be written as s or i, respectively)')
+        raise menuException(f'invalid menu type: "{type}"\nvalid choices are: selection, input (these can also be written as s or i, respectively)')
     
     global last_page
     global last_theme

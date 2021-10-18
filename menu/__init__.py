@@ -18,6 +18,7 @@ MIT License, see LICENSE for more details.
 
 # import variables
 from .menu import *
+from classes.menu_classes import *
 
 __all__ = [
     'generate',
