@@ -7,16 +7,17 @@ import keyboard as k
 from time import sleep
 from menu_functions import *
 from theme import *
+from exceptions import *
+
+try:
+    import msvcrt
+except:
+    raise menuException('failed to import msvcrt module')
 
 __all__=[
     'menu',
     'menuException',
 ]
-
-# exception masterclass
-class menuException(Exception):
-    def __init__ (self, message):
-        self.message = message
 
 # menu master class
 class menu(object):
@@ -31,6 +32,13 @@ class menu(object):
 
         '''
 
+        # the following block of code clears the keyboard buffer
+        # and prevents any previously pressed keystrokes from populating
+        # the input field:
+        while msvcrt.kbhit():
+            msvcrt.getch()
+
+
         global last_theme
         # only set the theme when applicable
         if last_theme != theme:
@@ -38,9 +46,11 @@ class menu(object):
                 color_theme.set_theme(theme)              
         last_theme = theme
 
+        # clear terminal screen and print menu header, respectively
         cls()
         print_header(self.name, page_name)
 
+        # print menu_text, if there is any
         if menu_text != None:
             if isinstance(menu_text, str) == True:
                 print(f' {color_theme.text}{menu_text}{color_theme.end}')
@@ -51,15 +61,15 @@ class menu(object):
                         continue
                     print(f' {color_theme.text}{item}{color_theme.end}')
             else:
-                menuException('menu_text must be either a string or a list')
+                raise menuException('menu_text must be either a string or a list')
             print('')
         
         if input_msg != None:
-            input(f' {input_msg}: ')
+            user_input = input(f' {input_msg}: ')
         else:
-            input(' ')
+            user_input = input(' ')
 
-        return str(input)
+        return str(user_input)
 
 
     def generate_selection(self, page_name, menu_items:list, menu_text:list = None, theme:str = None):
@@ -92,8 +102,7 @@ class menu(object):
         # only set the theme when applicable
         if last_theme != theme:
             if theme != None:
-                color_theme.set_theme(theme)
-                
+                color_theme.set_theme(theme)             
         last_theme = theme
 
         # get the total amount of menu_options loaded into the menu, minus any "_skip_" options.
@@ -106,8 +115,10 @@ class menu(object):
         if choice < 1:
             choice = total_options
 
-        cls()                                    #clears the terminal screen
-        print_header(self.name, page_name)       #prints the menu header
+
+        # clear terminal screen and print menu header
+        cls()
+        print_header(self.name, page_name)
 
         # prints optional menu_text, if there is any.
         if menu_text != None:
@@ -120,7 +131,7 @@ class menu(object):
                         continue
                     print(f' {color_theme.text}{item}{color_theme.end}')
             else:
-                menuException('menu_text must either be a string or a list')
+                raise menuException('menu_text must either be a string or a list')
             print('')
 
         # if no menu options are present, raise exception (can't have a menu with no options, can you?).
@@ -146,20 +157,26 @@ class menu(object):
 
         # l00p until user selects an item in the menu
         sleep(0.22)
-        while not k.is_pressed('up arrow'):
-            if k.is_pressed('right arrow'):
-                choice += 1
-                self.generate_selection(page_name, menu_items, menu_text, theme)
-            elif k.is_pressed('left arrow'):
-                choice -= 1
-                self.generate_selection(page_name, menu_items, menu_text, theme)
+        while not k.is_pressed('enter'):
+            if k.is_pressed('s'):
+                try:
+                    choice += 1
+                    return self.generate_selection(page_name, menu_items, menu_text, theme)
+                except:
+                    return
+            elif k.is_pressed('w'):
+                try:
+                    choice -= 1
+                    return self.generate_selection(page_name, menu_items, menu_text, theme)
+                except:
+                    return
             sleep(0.01)
         
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
 
     def terminate(self):
-        print(f'menu "{self.name}", page "{self.page}" has been deleted..'), sleep(2)
         del self
+        return
 
 # menu_option subclass
 class menu_option(menu):
