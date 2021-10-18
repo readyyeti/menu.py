@@ -11,7 +11,6 @@ from theme import *
 __all__=[
     'menu',
     'menuException',
-    'menu_option'
 ]
 
 # exception masterclass
@@ -22,14 +21,51 @@ class menuException(Exception):
 # menu master class
 class menu(object):
 
-    def __init__(self, program_name, page_name):
+    def __init__(self, program_name):
         self.name = program_name
-        self.page = page_name
 
-    def generate_selection(self, theme:str, menu_items:list, menu_text:list = None):
+    def generate_input(self, page_name, menu_text:list = None, input_msg:str = None, theme:str = None):
 
         '''
-        generates an in-terminal selection menu that works both in windows command-prompt and powershell.
+        generates an in-terminal user-input menu that works both in windows command-prompt and powershell.
+
+        '''
+
+        global last_theme
+        # only set the theme when applicable
+        if last_theme != theme:
+            if theme != None:
+                color_theme.set_theme(theme)              
+        last_theme = theme
+
+        cls()
+        print_header(self.name, page_name)
+
+        if menu_text != None:
+            if isinstance(menu_text, str) == True:
+                print(f' {color_theme.text}{menu_text}{color_theme.end}')
+            elif isinstance(menu_text, list) == True:
+                for item in menu_text:
+                    if item == '_skip_':
+                        print('')
+                        continue
+                    print(f' {color_theme.text}{item}{color_theme.end}')
+            else:
+                menuException('menu_text must be either a string or a list')
+            print('')
+        
+        if input_msg != None:
+            input(f' {input_msg}: ')
+        else:
+            input(' ')
+
+        return str(input)
+
+
+    def generate_selection(self, page_name, menu_items:list, menu_text:list = None, theme:str = None):
+
+        '''
+        generates an in-terminal user-selection menu that works both in windows command-prompt and powershell.
 
         '''
 
@@ -47,14 +83,15 @@ class menu(object):
 
         # this ensures that when changing pages, the selection returns to the top of the page
         if last_page != '':
-            if last_page != self.page:
+            if last_page != page_name:
                 choice = 1
         else:
             choice = 1
-        last_page = self.page
+        last_page = page_name
 
         # only set the theme when applicable
         if last_theme != theme:
+            if theme != None:
                 color_theme.set_theme(theme)
                 
         last_theme = theme
@@ -70,15 +107,20 @@ class menu(object):
             choice = total_options
 
         cls()                                    #clears the terminal screen
-        print_header(self.name, self.page)       #prints the menu header
+        print_header(self.name, page_name)       #prints the menu header
 
         # prints optional menu_text, if there is any.
         if menu_text != None:
-            for item in menu_text:
-                if item == '_skip_':
-                    print('')
-                    continue
-                print(f' {color_theme.text}{item}{color_theme.end}')
+            if isinstance(menu_text, str) == True:
+                print(f' {color_theme.text}{menu_text}{color_theme.end}')
+            elif isinstance(menu_text, list) == True:
+                for item in menu_text:
+                    if item == '_skip_':
+                        print('')
+                        continue
+                    print(f' {color_theme.text}{item}{color_theme.end}')
+            else:
+                menuException('menu_text must either be a string or a list')
             print('')
 
         # if no menu options are present, raise exception (can't have a menu with no options, can you?).
@@ -87,31 +129,36 @@ class menu(object):
 
         # print menu items
         i = 1
-        for item in menu_items:
-            if item == '_skip_':
-                print('')
-                continue
-            if i == choice:
-                menu_option(i, item, True).print()
-            else:
-                menu_option(i, item).print()
-            i += 1
+        if isinstance(menu_items, str) == True:
+            menu_option(i, item, True).print()
+        elif isinstance(menu_items, list) == True:
+            for item in menu_items:
+                if item == '_skip_':
+                    print('')
+                    continue
+                if i == choice:
+                    menu_option(i, item, True).print()
+                else:
+                    menu_option(i, item).print()
+                i += 1
+        else:
+            menuException('menu_items must either be a string or a list')
 
         # l00p until user selects an item in the menu
         sleep(0.22)
         while not k.is_pressed('up arrow'):
             if k.is_pressed('right arrow'):
                 choice += 1
-                self.generate_selection(theme, menu_items, menu_text)
+                self.generate_selection(page_name, menu_items, menu_text, theme)
             elif k.is_pressed('left arrow'):
                 choice -= 1
-                self.generate_selection(theme, menu_items, menu_text)
+                self.generate_selection(page_name, menu_items, menu_text, theme)
             sleep(0.01)
         
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
 
     def terminate(self):
-        print(f'{self} deleted :('), sleep(2)
+        print(f'menu "{self.name}", page "{self.page}" has been deleted..'), sleep(2)
         del self
 
 # menu_option subclass
