@@ -13,7 +13,8 @@ if not version:
 
 packages = [
     'menu',
-    'menu/classes'
+    'menu/classes',
+    'menu/functions'
 ]
 
 setup(
