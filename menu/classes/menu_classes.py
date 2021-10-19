@@ -1,23 +1,28 @@
-choice = 1
-last_page = ''
-last_teme = ''
-last_theme = ''
 
 import keyboard as k
 from time import sleep
-from menu_functions import *
-from theme import *
-from exceptions import *
+from .menu_functions import *
+from .theme import *
+from .exceptions import *
 
 try:
     import msvcrt
 except:
     raise menuException('failed to import msvcrt module')
 
+version = '1.0.0'
+
 __all__=[
     'menu',
     'menuException',
+    'menuprint',
+    'version'
 ]
+
+choice = 1
+last_page = ''
+last_teme = ''
+last_theme = ''
 
 # menu master class
 class menu(object):
@@ -65,10 +70,9 @@ class menu(object):
             print('')
         
         if input_msg != None:
-            user_input = input(f' {input_msg}: ')
+            user_input = input(f' {color_theme.text}{input_msg}: ')
         else:
-            user_input = input(' ')
-
+            user_input = input(f' {color_theme.text}') + f'{color_theme.end}'
         return str(user_input)
 
 
@@ -175,6 +179,8 @@ class menu(object):
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
 
     def terminate(self):
+        while msvcrt.kbhit():
+            msvcrt.getch()
         del self
         return
 
@@ -195,6 +201,15 @@ class menu_option(menu):
 
     def select(self):
         return self.number
+
+class menuprint(menu):
+
+    def __init__(self, msg:str, newline=True):
+        self.msg = msg
+        if newline == True:
+            print(f'\n {color_theme.text}{self.msg}{color_theme.end}')
+        else:
+            print(f' {color_theme.text}{self.msg}{color_theme.end}')
 
         
 

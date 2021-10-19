@@ -18,6 +18,7 @@ test.py
 
 # directories to ignore:
 __pycache__/
+/old
 /__bats__
 /build
 /dist

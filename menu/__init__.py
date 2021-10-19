@@ -17,19 +17,15 @@ MIT License, see LICENSE for more details.
 #from .menu import eprint
 
 # import variables
-from .menu import *
 from classes.menu_classes import *
 
 __all__ = [
-    'generate',
-    'cprint',
-    'eprint',
+    'menu',
+    'menu.generate_selection',
+    'menu.generate_input',
+    'menuprint',
     'terminate',
-    '__title__',
-    '__author__',
-    '__license__',
-    '__copyright__',
-    '__version__'
+    'version'
 ]
 
 __title__ = 'menu'
