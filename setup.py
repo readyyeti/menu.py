@@ -20,6 +20,9 @@ packages = [
 setup(
     name="menu.py",
     version=version,
+    install_requires=[
+        'keyboard'
+    ],
     author="deadyeti",
     author_email="deadyeti@deadyeti.ca",
     description="A simple python package for in-terminal menu creation on Windows",
