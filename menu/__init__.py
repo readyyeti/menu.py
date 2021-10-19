@@ -1,7 +1,7 @@
 """
 menu.py
 =============================================
-a simple python library for creating in-terminal menus.
+A simple python package for in-terminal menu creation on Windows
 
 copyright (c) 2021-present deadyeti
 
@@ -18,11 +18,16 @@ MIT License, see LICENSE for more details.
 
 # import variables
 from .menu import *
+from .functions.menuinput import *
+from .functions.menuprint import *
+from .classes.theme import formatting
 
 __all__ = [
     'menu',
     'menuprint',
-    'menuinput'
+    'menuprint_error',
+    'menuinput',
+    'formatting'
 ]
 
 __title__ = 'menu'

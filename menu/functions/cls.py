@@ -1,4 +1,9 @@
-from os import system, name
+from menu.classes.exceptions import *
+
+try:
+    from os import system, name
+except:
+    raise menuException(f'failed to import "os" module in {__file__}')
 
 __all__=[
     'cls'

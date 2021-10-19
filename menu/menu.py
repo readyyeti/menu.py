@@ -14,14 +14,13 @@ from .classes.menu_options import *
 try:
     import msvcrt
 except:
-    raise menuException('failed to import msvcrt module')
+    raise menuException(f'failed to import "msvcrt" module in {__file__}')
 
-version = '0.2.14'
+version = '0.2.15'
 
 __all__=[
     'menu',
     'menuprint',
-    'menuinput',
     'version'
 ]
 
@@ -143,48 +142,6 @@ class menu(object):
             msvcrt.getch()
         del self
         return
-
-class menuprint(menu):
-
-    '''
-    A print() function that prints in color
-    '''
-
-    def __init__(self, msg:str, error:bool = False, newline:bool = True):
-        self.msg = msg
-        if error != False:
-            if newline == True:
-                print(f'\n {color_theme.error}*{self.msg}{color_theme.end}')
-            else:
-                print(f' {color_theme.error}*{self.msg}{color_theme.end}')
-        else:
-            if newline == True:
-                print(f'\n {color_theme.text}{self.msg}{color_theme.end}')
-            else:
-                print(f' {color_theme.text}{self.msg}{color_theme.end}')
-
-class menuinput(object):
-
-    '''
-    Quickly generates an input field.
-    '''
-
-    def __init__(self, input_msg:str, newline:bool = False):
-
-        # clear input buffer
-        while msvcrt.kbhit():
-            msvcrt.getch()
-        self.input_msg = input_msg
-        self.newline = newline
-
-    def get(self):
-
-        if self.newline == True:
-            self.input = input(f'\n{color_theme.text} {self.input_msg}:\n ') + f'{color_theme.end}'
-        else:
-            self.input = input(f'\n{color_theme.text} {self.input_msg}: ') + f'{color_theme.end}'
-
-        return self.input
         
     
 
