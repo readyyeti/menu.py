@@ -10,11 +10,10 @@ try:
 except:
     raise menuException('failed to import msvcrt module')
 
-version = '1.0.0'
+version = '0.2.7'
 
 __all__=[
     'menu',
-    'menuException',
     'menuprint',
     'version'
 ]
@@ -204,12 +203,17 @@ class menu_option(menu):
 
 class menuprint(menu):
 
-    def __init__(self, msg:str, newline=True):
+    def __init__(self, msg:str, error:bool = False, newline:bool = True):
         self.msg = msg
-        if newline == True:
-            print(f'\n {color_theme.text}{self.msg}{color_theme.end}')
+        if error != False:
+            if newline == True:
+                print(f'\n {color_theme.error}*{self.msg}{color_theme.end}')
+            else:
+                print(f' {color_theme.error}*{self.msg}{color_theme.end}')
         else:
-            print(f' {color_theme.text}{self.msg}{color_theme.end}')
-
+            if newline == True:
+                print(f'\n {color_theme.text}{self.msg}{color_theme.end}')
+            else:
+                print(f' {color_theme.text}{self.msg}{color_theme.end}')
         
 
