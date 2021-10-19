@@ -12,7 +12,8 @@ if not version:
     raise RuntimeError('version is not set')
 
 packages = [
-    'menu'
+    'menu',
+    'menu/classes'
 ]
 
 setup(
