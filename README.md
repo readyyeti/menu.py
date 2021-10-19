@@ -47,12 +47,12 @@ from menu import *
 from time import sleep
 
 example_menu = menu('app_or_file_name')
-theme = 'purple'
+theme = 'blue'
 
 def main_menu():
 
    # setting up the page name and menu options
-   page_name = 'main menu'
+   page_name = 'name_of_page'
    text = [
       'please choose from the following options:'
    ]
@@ -68,9 +68,9 @@ def main_menu():
 
    match selection:
       case 1:
-         print('option 1'), sleep(2)
+         menuprint('you selected option 1'), sleep(2)
       case 2:
-         print('option 2'), sleep(2)
+         menuprint('you selected option 2'), sleep(2)
       case 3:
          example_menu.terminate()
          exit()
