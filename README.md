@@ -34,7 +34,7 @@ py -m pip install menu.py
 I always try to keep the most up-to-date version on pypi, but in case you need to install the most up-to-date version from github:
 ```
 $ git clone https://github.com/readyyeti/menu.py
-$ cd yetimenu
+$ cd menu
 $ python 3 -m pip install
 ```
 </br>
@@ -44,37 +44,41 @@ $ python 3 -m pip install
 
 ```python
 from menu import *
+from time import sleep
 
-app_name = 'example'
-theme = 'purple'
+example_menu = menu('app_or_file_name')
+theme = 'blue'
 
-def main_menu()
+def main_menu():
 
-   page_name = 'main menu'
+   # setting up the page name and menu options
+   page_name = 'name_of_page'
    text = [
       'please choose from the following options:'
    ]
    options = [
       'option #1',    # CASE 1
       'option #2',    # CASE 2
-      '_skip_',       # _skip_ is ignored by yetimenu
+      '_skip_',       # _skip_ is ignored by menu.py
       'exit'          # CASE 3
    ]
 
-   menu_type = 'selection'
-   generate(menu_type, theme, app_name, page_name, options, text)
+   # generate menu
+   selection = example_menu.generate_selection(page_name, options, text, theme)
 
    match selection:
       case 1:
-         print('option 1')
+         menuprint('you selected option 1'), sleep(2)
       case 2:
-         print('option 2')
+         menuprint('you selected option 2'), sleep(2)
       case 3:
-         m.terminate()
+         example_menu.terminate()
+         exit()
    
    return
 
-main_menu()
+while True:
+   main_menu()
 
 ```
 </br>

@@ -12,7 +12,9 @@ if not version:
     raise RuntimeError('version is not set')
 
 packages = [
-    'menu'
+    'menu',
+    'menu/classes',
+    'menu/functions'
 ]
 
 setup(
@@ -20,7 +22,7 @@ setup(
     version=version,
     author="deadyeti",
     author_email="deadyeti@deadyeti.ca",
-    description="A simple in-terminal menu solution for Windows",
+    description="A simple python package for in-terminal menu creation on Windows",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/readyyeti/menu.py",
