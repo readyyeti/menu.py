@@ -16,7 +16,7 @@ try:
 except:
     raise menuException(f'failed to import "msvcrt" module in {__file__}')
 
-version = '0.2.16'
+version = '0.2.17'
 
 __all__=[
     'menu',
