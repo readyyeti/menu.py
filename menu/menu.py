@@ -1,20 +1,27 @@
 
 import keyboard as k
 from time import sleep
-from .menu_functions import *
-from .theme import *
-from .exceptions import *
+
+# import functions
+from .functions.cls import *
+from .functions.print_header import *
+
+# import classes
+from .classes.theme import *
+from .classes.exceptions import *
+from .classes.menu_options import *
 
 try:
     import msvcrt
 except:
     raise menuException('failed to import msvcrt module')
 
-version = '0.2.7'
+version = '0.2.14'
 
 __all__=[
     'menu',
     'menuprint',
+    'menuinput',
     'version'
 ]
 
@@ -28,52 +35,6 @@ class menu(object):
 
     def __init__(self, program_name):
         self.name = program_name
-
-    def generate_input(self, page_name, menu_text:list = None, input_msg:str = None, theme:str = None):
-
-        '''
-        generates an in-terminal user-input menu that works both in windows command-prompt and powershell.
-
-        '''
-
-        # the following block of code clears the keyboard buffer
-        # and prevents any previously pressed keystrokes from populating
-        # the input field:
-        while msvcrt.kbhit():
-            msvcrt.getch()
-
-
-        global last_theme
-        # only set the theme when applicable
-        if last_theme != theme:
-            if theme != None:
-                color_theme.set_theme(theme)              
-        last_theme = theme
-
-        # clear terminal screen and print menu header, respectively
-        cls()
-        print_header(self.name, page_name)
-
-        # print menu_text, if there is any
-        if menu_text != None:
-            if isinstance(menu_text, str) == True:
-                print(f' {color_theme.text}{menu_text}{color_theme.end}')
-            elif isinstance(menu_text, list) == True:
-                for item in menu_text:
-                    if item == '_skip_':
-                        print('')
-                        continue
-                    print(f' {color_theme.text}{item}{color_theme.end}')
-            else:
-                raise menuException('menu_text must be either a string or a list')
-            print('')
-        
-        if input_msg != None:
-            user_input = input(f' {color_theme.text}{input_msg}: ')
-        else:
-            user_input = input(f' {color_theme.text}') + f'{color_theme.end}'
-        return str(user_input)
-
 
     def generate_selection(self, page_name, menu_items:list, menu_text:list = None, theme:str = None):
 
@@ -183,25 +144,11 @@ class menu(object):
         del self
         return
 
-# menu_option subclass
-class menu_option(menu):
-
-    def __init__(self, number:int, name:str, bHighlight:bool = False):
-        self.number = number
-        self.name = name
-        self.bHighlight = bHighlight
-
-    def print(self):
-        if self.bHighlight == False:
-            print(f' {color_theme.text} {self.name} {color_theme.end}')
-        else:
-            print(f' {color_theme.highlight} {self.name} {color_theme.end}')
-        return
-
-    def select(self):
-        return self.number
-
 class menuprint(menu):
+
+    '''
+    A print() function that prints in color
+    '''
 
     def __init__(self, msg:str, error:bool = False, newline:bool = True):
         self.msg = msg
@@ -215,5 +162,29 @@ class menuprint(menu):
                 print(f'\n {color_theme.text}{self.msg}{color_theme.end}')
             else:
                 print(f' {color_theme.text}{self.msg}{color_theme.end}')
+
+class menuinput(object):
+
+    '''
+    Quickly generates an input field.
+    '''
+
+    def __init__(self, input_msg:str, newline:bool = False):
+
+        # clear input buffer
+        while msvcrt.kbhit():
+            msvcrt.getch()
+        self.input_msg = input_msg
+        self.newline = newline
+
+    def get(self):
+
+        if self.newline == True:
+            self.input = input(f'\n{color_theme.text} {self.input_msg}:\n ') + f'{color_theme.end}'
+        else:
+            self.input = input(f'\n{color_theme.text} {self.input_msg}: ') + f'{color_theme.end}'
+
+        return self.input
         
+    
 

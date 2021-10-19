@@ -1,15 +1,8 @@
-from os import system, name
-from .theme import *
+from menu.classes.theme import *
 
 __all__=[
-    'cls',
     'print_header'
 ]
-
-# function that clears the terminal screen when called
-def cls():
-    system('cls' if name=='nt' else 'clear')
-    return
 
 # function that prints the terminal header when called
 def print_header(program_name, page_name):
