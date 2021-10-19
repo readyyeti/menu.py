@@ -34,26 +34,25 @@ class color_theme:
 
 class formatting:
 
-    # default formatting
     title_sep = '::'
     page_brackets = ['[', ']']
 
-    def set_formatting(title_sep:str, page_brackets:list):
+    def set_formatting(self, title_sep:str, page_brackets:list):
 
         if title_sep == None:
-            title_sep == ''
+            formatting.title_sep == ''
         elif isinstance(title_sep, str):
-            title_sep = title_sep
+            formatting.title_sep = title_sep
         else:
             raise menuException('title_sep must be a string')
         
 
         if page_brackets == None:
-            page_brackets = ''
+            formatting.page_brackets = ''
         elif isinstance(page_brackets, list):
             if len(page_brackets) != 2:
                 raise menuException(f'page_brackets MUST be a list containing exactly 2 items, your list contains {len(page_brackets)} item(s)')
             else:
-                page_brackets = page_brackets
+                formatting.page_brackets = page_brackets
         else:
             raise menuException(f'page_brackets MUST be a list containing exactly 2 items. You entered a {type(page_brackets)}')
