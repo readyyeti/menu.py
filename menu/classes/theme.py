@@ -37,7 +37,7 @@ class formatting:
     title_sep = '::'
     page_brackets = ['[', ']']
 
-    def set_formatting(self, title_sep:str, page_brackets:list):
+    def set_formatting(title_sep:str, page_brackets:list):
 
         if title_sep == None:
             formatting.title_sep == ''
