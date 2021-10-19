@@ -64,7 +64,7 @@ def main_menu():
    ]
 
    # generate menu
-   selection = example_menu.generate(page_name, options, text, theme)
+   selection = example_menu.generate_selection(page_name, options, text, theme)
 
    match selection:
       case 1:
