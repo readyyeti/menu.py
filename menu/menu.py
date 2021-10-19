@@ -1,10 +1,13 @@
 
 import keyboard as k
 from time import sleep
+from platform import python_version, system, python_version_tuple
 
 # import functions
 from .functions.cls import *
 from .functions.print_header import *
+from .functions.clear_buffer import *
+from .functions.debugprint import *
 
 # import classes
 from .classes.theme import *
@@ -16,17 +19,24 @@ try:
 except:
     raise menuException(f'failed to import "msvcrt" module in {__file__}')
 
-version = '0.2.18'
+version = '0.2.31'
 
 __all__=[
     'menu',
-    'version'
+    'version',
+    'selection_delay',
+    'refresh_rate'
 ]
 
+re_iterations = 0
 choice = 1
 last_page = ''
 last_teme = ''
 last_theme = ''
+
+
+selection_delay = 0.22  # 0.22 seems best
+refresh_rate = 0.01     # 0.01 seems appropriate
 
 # menu master class
 class menu(object):
@@ -52,6 +62,9 @@ class menu(object):
         global choice     
         global last_page
         global last_theme
+        global re_iterations
+
+        clear_buffer()
 
         # this ensures that when changing pages, the selection returns to the top of the page
         if last_page != '':
@@ -118,7 +131,7 @@ class menu(object):
             menuException('menu_items must either be a string or a list')
 
         # l00p until user selects an item in the menu
-        sleep(0.22)
+        sleep(selection_delay)
         while not k.is_pressed('enter'):
             if k.is_pressed('s'):
                 try:
@@ -131,16 +144,18 @@ class menu(object):
                     choice -= 1
                     return self.generate_selection(page_name, menu_items, menu_text, theme)
                 except:
-                    return
-            sleep(0.01)
+                    self.terminate()
+            sleep(refresh_rate)
         
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
 
     def terminate(self):
-        while msvcrt.kbhit():
-            msvcrt.getch()
+        clear_buffer()
         del self
         return
-        
-    
 
+#check that user is using the correct OS and version of python
+if system().lower() != 'windows':
+    raise menuException(f'invalid operating system: "{system()}"\nyetimenu currently only works on windows machines.')
+if int(python_version_tuple()[0]) < 3 or int(python_version_tuple()[1]) < 6:
+    raise menuException(f'invalid python version: "{python_version()}"\nyetimenu makes use of features, such as f-strings, that require python 3.6 or newer.')

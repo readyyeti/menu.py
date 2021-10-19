@@ -16,7 +16,7 @@ MIT License, see LICENSE for more details.
 #from .menu import cprint
 #from .menu import eprint
 
-# import variables
+# import modules
 from .menu import *
 from .functions.menuinput import *
 from .functions.menuprint import *
