@@ -44,11 +44,12 @@ $ python 3 -m pip install
 
 ```python
 from menu import *
+from time import sleep
 
 example_menu = menu('app_or_file_name')
 theme = 'purple'
 
-def main_menu()
+def main_menu():
 
    # setting up the page name and menu options
    page_name = 'main menu'
@@ -63,13 +64,13 @@ def main_menu()
    ]
 
    # generate menu
-   example_menu.generate(page_name, options, text, theme)
+   selection = example_menu.generate(page_name, options, text, theme)
 
    match selection:
       case 1:
-         print('option 1')
+         print('option 1'), sleep(2)
       case 2:
-         print('option 2')
+         print('option 2'), sleep(2)
       case 3:
          example_menu.terminate()
          exit()
