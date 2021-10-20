@@ -24,14 +24,14 @@ def primary_menu():
         case 2:
             return theme_selection_menu()
         case 3:
-            return menuprint('this option is currently unavailable'), sleep(2)
+            return menuprint_error('this option is currently unavailable'), sleep(2)
         case 4:
             my_menu.terminate()
             return exit()
 
         #this should, in theory, never happen but we'll plan for it anyways
         case _: #wildcard
-            print('error'), sleep(5)
+            menuprint_error('a critical error has occured'), sleep(5)
             my_menu.terminate()
             return exit()
 
@@ -63,7 +63,7 @@ def module_menu():
 
         #this should, in theory, never happen but we'll plan for it anyways
         case _:
-            print('error'), sleep(5)
+            menuprint_error('a critical error has occured'), sleep(5)
             my_menu.terminate()
             return exit()
 
@@ -113,7 +113,7 @@ def theme_selection_menu():
 
             #this should, in theory, never happen but we'll plan for it anyways
             case _:
-                print('error'), sleep(5)
+                menuprint_error('a critical error has occured'), sleep(5)
                 my_menu.terminate()
                 return exit()
 

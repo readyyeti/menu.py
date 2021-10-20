@@ -14,7 +14,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.35'
+version = '0.2.36'
 
 __all__=[
     'menu',
@@ -152,6 +152,6 @@ class menu(object):
 
 #check that user is using the correct OS and version of python
 if system().lower() != 'windows':
-    raise menuException(f'invalid operating system: "{system()}"\nyetimenu currently only works on windows machines.')
+    raise menuException(f'invalid operating system: "{system()}"\nmenu.py currently only works on windows machines.')
 if int(python_version_tuple()[0]) < 3 or int(python_version_tuple()[1]) < 6:
-    raise menuException(f'invalid python version: "{python_version()}"\nyetimenu makes use of features, such as f-strings, that require python 3.6 or newer.')
+    raise menuException(f'invalid python version: "{python_version()}"\nmenu.py makes use of features, such as f-strings, that require python 3.6 or newer.')

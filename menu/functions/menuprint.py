@@ -28,6 +28,6 @@ def menuprint_error(msg, newline:bool = False):
     '''
 
     if newline == False:
-        print(f' {color_theme.error}{msg}{color_theme.end}')
+        print(f' {color_theme.error}*{msg}{color_theme.end}')
     else:
-        print(f' {color_theme.error}{msg}{color_theme.end}')
+        print(f'\n {color_theme.error}*{msg}{color_theme.end}')
