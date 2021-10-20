@@ -6,16 +6,14 @@ my_theme = "White"
 
 def primary_menu():
 
-    global my_theme
-
     page_name = 'main menu'
     text = 'the default keybinds for navigation are "s" for DOWN, "w" for UP and "ENTER" for SELECT'
     menu_items = [
-        'module information',               #CASE 1
-        'change theme via selection',       #CASE 2
-        'change theme via input',           #CASE 3
-        '_skip_',                           # "_skip_" IS IGNORED BY MENU
-        '[X] exit'                          #CASE 4
+        'module information',                    #CASE 1
+        'change theme via selection',            #CASE 2
+        'change theme via input (unavailable)',  #CASE 3   *** CURRENTLY UNAVAILABLE ***
+        '_skip_',                                # "_skip_" IS IGNORED BY MENU
+        '[X] exit'                               #CASE 4
     ]
 
     selection = my_menu.generate(page_name, menu_items, text, my_theme)
@@ -26,9 +24,10 @@ def primary_menu():
         case 2:
             return theme_selection_menu()
         case 3:
-            return print('bar'), sleep(2)
+            return menuprint('this option is currently unavailable'), sleep(2)
         case 4:
-            return my_menu.terminate()
+            my_menu.terminate()
+            return exit()
 
         #this should, in theory, never happen but we'll plan for it anyways
         case _: #wildcard
@@ -60,6 +59,7 @@ def module_menu():
             return primary_menu()
         case 2:
             my_menu.terminate()
+            return exit()
 
         #this should, in theory, never happen but we'll plan for it anyways
         case _:
@@ -72,18 +72,18 @@ def theme_selection_menu():
     global my_theme
 
     '''
-        *** please note that the themes are undergoing a rewrite at this time, only the blue and white themes are available ***
+        *** please note that the color themes will be undergoing a rewrite and may not be working properly ***
     '''
 
     page_name = 'theme selection'
     text = 'please select one of the themes below:'
 
     menu_items = [
-        'Red Theme',                 #CASE 1   *** currently not working, will display as white
-        'Green Theme',               #CASE 2   *** currently not working, will display as white
+        'Red Theme',                 #CASE 1   
+        'Green Theme',               #CASE 2  
         'Blue Theme',                #CASE 3
-        'Light Blue Theme',          #CASE 4   *** currently not working, will display as white
-        'Yellow Theme',              #CASE 5   *** currently not working, will display as white
+        'Light Blue Theme',          #CASE 4  
+        'Yellow Theme',              #CASE 5  
         'White Theme',               #CASE 6
         '_skip_',                    # "_skip_" IS IGNORED BY MENU
         '[<] back',                  # CASE 7
@@ -95,24 +95,18 @@ def theme_selection_menu():
     match selection:
             case 1:
                 my_theme = 'Red'
-                return theme_selection_menu()
             case 2:
                 my_theme = 'Green'
-                return theme_selection_menu()
             case 3:
                 my_theme = 'Blue'
-                return theme_selection_menu()
             case 4:
                 my_theme = 'Light Blue'
-                return theme_selection_menu()
             case 5:
                 my_theme = 'Yellow'
-                return theme_selection_menu()
             case 6:
                 my_theme = 'White'
-                return theme_selection_menu()
             case 7:
-                return
+                return primary_menu()
             case 8:
                 my_menu.terminate()
                 return exit()
@@ -122,6 +116,8 @@ def theme_selection_menu():
                 print('error'), sleep(5)
                 my_menu.terminate()
                 return exit()
+
+    return theme_selection_menu()
 
 while True:
     primary_menu()

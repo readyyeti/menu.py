@@ -20,15 +20,47 @@ class color_theme:
 
     def set_theme(color:str):
         if color.lower() in ['blue', 'bleu']:
-
-            # colors
             color_theme.text = '\33[34m'
             color_theme.highlight = '\33[44m\033[30m'
             color_theme.error = '\033[91m'
             color_theme.title = '\33[44m\033[30m'
             color_theme.page = '\33[34m'
-        else: #sets the default theme
-            pass
+        elif color.lower() in ['light blue', 'bleu pâle', 'bleu pale']:
+            color_theme.text = '\033[36m'
+            color_theme.highlight = '\033[46m\033[30m'
+            color_theme.error = '\033[91m'
+            color_theme.title = '\033[46m\033[30m'
+            color_theme.page = '\033[36m'
+        elif color.lower() in ['red', 'rouge']:
+            color_theme.text = '\033[31m'
+            color_theme.highlight = '\033[41m\033[30m'
+            color_theme.error = '\33[33m'
+            color_theme.title = '\033[41m\033[30m'
+            color_theme.page = '\033[31m'
+        elif color.lower() in ['green', 'vert']:
+            color_theme.text = '\033[32m'
+            color_theme.highlight = '\033[42m\033[30m'
+            color_theme.error = '\033[91m'
+            color_theme.title = '\033[102m\033[30m'
+            color_theme.page = '\33[92m'
+        elif color.lower() in ['purple', 'violet', 'mauve']:
+            color_theme.text = '\33[95m'
+            color_theme.highlight = '\33[45m\033[30m'
+            color_theme.error = '\033[91m'
+            color_theme.title = '\33[45m\033[30m'
+            color_theme.page = '\33[95m'
+        elif color.lower() in ['yellow', 'jaune']:
+            color_theme.text = '\33[33m'
+            color_theme.highlight = '\33[43m\033[30m'
+            color_theme.error = '\033[91m'
+            color_theme.title = '\33[43m\033[30m'
+            color_theme.page = '\33[33m'
+        else: # reset to default "white" theme
+            color_theme.text = '\33[37m'
+            color_theme.highlight = '\33[7m'
+            color_theme.error = '\033[91m'
+            color_theme.title = '\33[7m'
+            color_theme.page = '\33[37m'
 
         return
 
