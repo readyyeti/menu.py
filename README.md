@@ -9,10 +9,10 @@ github: [link](https://www.github.com/readyyeti/menu.py)</br>
 
 ## Introduction ##
 
-**menu.py** is still in the early stages of development, it is not recommended that you download this package at this time.
+⚠️ **menu.py** is still in the early stages of development, it is not recommended that you download this package at this time.
 </br>
 
-**menu.py** is a lightweight and easy-to-use python module used to quickly and efficiently create in-terminal menus that work in both *Command Prompt* and *Windows PowerShell*. Using **menu.py**, a developer can either create a selection menu, where users select an option from a pre-determined list of options, ~~or a user-input menu, where users type their input.~~ (in development)
+**menu.py** is a lightweight and easy-to-use python package used to quickly and efficiently create in-terminal menus that work in both *Command Prompt* and *Windows PowerShell*. Using **menu.py**, a user can either create a selection menu, where one selects an option from a pre-determined list of options, ~~or a user-input menu, where users type their input.~~ (not yet implemented)
 </br>
 
 
@@ -68,7 +68,7 @@ def main_menu():
    ]
 
    # generate menu
-   selection = example_menu.generate_selection(page_name, options, text, theme)
+   selection = example_menu.generate(page_name, options, text, theme)
 
    match selection:
       case 1:
@@ -77,7 +77,7 @@ def main_menu():
          menuprint('you selected option 2'), sleep(2)
       case 3:
          example_menu.terminate()
-         exit()
+         return exit()
    
    return
 

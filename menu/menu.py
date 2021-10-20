@@ -14,12 +14,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-try:
-    import msvcrt
-except:
-    raise menuException(f'failed to import "msvcrt" module in {__file__}')
-
-version = '0.2.32'
+version = '0.2.33'
 
 __all__=[
     'menu',
@@ -44,10 +39,10 @@ class menu(object):
     def __init__(self, program_name):
         self.name = program_name
 
-    def generate_selection(self, page_name, menu_items:list, menu_text:list = None, theme:str = None):
+    def generate(self, page_name, menu_items:list, menu_text:list = None, theme:str = None):
 
         '''
-        generates an in-terminal user-selection menu that works both in windows command-prompt and powershell.
+        generates an in-terminal selection menu that works both in windows command-prompt and powershell.
 
         '''
 
@@ -136,13 +131,13 @@ class menu(object):
             if k.is_pressed('s'):
                 try:
                     choice += 1
-                    return self.generate_selection(page_name, menu_items, menu_text, theme)
+                    return self.generate(page_name, menu_items, menu_text, theme)
                 except:
                     return
             elif k.is_pressed('w'):
                 try:
                     choice -= 1
-                    return self.generate_selection(page_name, menu_items, menu_text, theme)
+                    return self.generate(page_name, menu_items, menu_text, theme)
                 except:
                     self.terminate()
             sleep(refresh_rate)
