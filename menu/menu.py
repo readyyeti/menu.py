@@ -25,7 +25,7 @@ __all__=[
 ]
 
 choice = 1
-last_page = ''
+last_page = None
 last_teme = ''
 last_theme = ''
 
@@ -65,7 +65,7 @@ class menu(object):
         clear_buffer()
 
         # this ensures that when changing pages, the selection returns to the top of the page
-        if last_page != '':
+        if last_page != None:
             if last_page != page_name:
                 choice = 1
         else:
@@ -152,6 +152,7 @@ class menu(object):
                     self.terminate()
             sleep(refresh_rate)
         
+        clear_buffer()
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
 
     def terminate(self):
