@@ -4,10 +4,14 @@
 [![Version](https://img.shields.io/badge/python-3.6%2B-6724ff)](https://pypi.org/project/menu.py/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/readyyeti/menu.py?color=6724ff&style=flat-square)](https://github.com/readyyeti/menu.py)
 
-<sub>[view on github](https://www.github.com/readyyeti/menu.py)</sub><br>
-<sub>[view on PyPI](https://pypi.org/project/menu.py/)</sub><br>
-<sub>[Contact author via e-mail](mailto:deadyeti@deadyeti.ca)</sub><br>
-<sub>[Contact author via discord](https://discordapp.com/users/323651600990339074)</sub><br>
+> # created by: deadyeti
+> - <sub>[Contact via e-mail](mailto:deadyeti@deadyeti.ca)</sub>
+> - <sub>[Contact via discord](https://discordapp.com/users/323651600990339074)</sub>
+<br>
+
+> # links
+> <sub>[view on github](https://www.github.com/readyyeti/menu.py)</sub><br>
+> <sub>[view on PyPI](https://pypi.org/project/menu.py/)</sub><br>
 <br>
 
 ## Introduction ##
