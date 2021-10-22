@@ -48,10 +48,10 @@ py -m pip install menu.py
 </br>
 
 I always try to keep the most up-to-date version on pypi, but in case you need to install the most up-to-date version from github:
-```
+```git
 $ git clone https://github.com/readyyeti/menu.py
-$ cd menu
-$ python 3 -m pip install
+$ cd menu.py
+$ python 3 -m pip install -U
 ```
 </br>
 
