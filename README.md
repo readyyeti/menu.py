@@ -26,7 +26,7 @@
 >
 > - **menu.py** is still in the early stages of development, it is not recommended that you download this package at this time.
 > - **menu.py** only works on machines running Windows.
->
+>               
 <br>
 
 **menu.py** is a lightweight and easy-to-use python package used to quickly and efficiently create in-terminal menus that work in both *Command Prompt* and *Windows PowerShell*. Using **menu.py**, a user can either create a selection menu, where one selects an option from a pre-determined list of options, ~~or a user-input menu, where users type their input.~~ (not yet implemented)
