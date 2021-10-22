@@ -12,7 +12,7 @@ def primary_menu():
         'module information',                    #CASE 1
         'change theme via selection',            #CASE 2
         'change theme via input (unavailable)',  #CASE 3   *** CURRENTLY UNAVAILABLE ***
-        '_skip_',                                # "_skip_" IS IGNORED BY MENU
+        '_skip_',                                # "_skip_", " " and "" can be used to create a blank line without messing up the selections
         '[X] exit'                               #CASE 4
     ]
 
@@ -85,8 +85,8 @@ def theme_selection_menu():
         'Light Blue Theme',          #CASE 4  
         'Yellow Theme',              #CASE 5  
         'White Theme',               #CASE 6
-        '_skip_',                    # "_skip_" IS IGNORED BY MENU
-        '[<] back',                  # CASE 7
+        ' ',                         # "_skip_", " " and "" can be used to create a blank line without messing up the selections
+        '[<] back',                  #CASE 7
         '[X] exit'                   #CASE 8
     ]
 

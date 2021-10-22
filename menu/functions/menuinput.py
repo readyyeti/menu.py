@@ -19,6 +19,6 @@ def menuinput(msg:str, newline:bool = False):
     if newline == False:
         user_input = input(f' {color_theme.text}{msg}') + f'{color_theme.end}'
     else:
-        user_input = input(f' {color_theme.text}{msg}') + f'{color_theme.end}'
+        user_input = input(f'\n {color_theme.text}{msg}') + f'{color_theme.end}'
     return user_input
 

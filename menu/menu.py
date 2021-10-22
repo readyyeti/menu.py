@@ -2,6 +2,7 @@
 import keyboard as k
 from time import sleep
 from platform import python_version, system, python_version_tuple
+from sys import setrecursionlimit
 
 # import functions
 from .functions.cls import *
@@ -14,7 +15,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.36'
+version = '0.2.37'
 
 __all__=[
     'menu',
@@ -23,12 +24,10 @@ __all__=[
     'refresh_rate'
 ]
 
-re_iterations = 0
 choice = 1
 last_page = ''
 last_teme = ''
 last_theme = ''
-
 
 selection_delay = 0.22  # 0.22 seems best
 refresh_rate = 0.01     # 0.01 seems appropriate
@@ -39,7 +38,7 @@ class menu(object):
     def __init__(self, program_name):
         self.name = program_name
 
-    def generate(self, page_name, menu_items:list, menu_text:list = None, theme:str = None):
+    def generate(self, page_name:str, menu_items:list, menu_text:list = None, theme:str = None):
 
         '''
         generates an in-terminal selection menu that works both in windows command-prompt and powershell.
@@ -59,6 +58,10 @@ class menu(object):
         global last_theme
         global re_iterations
 
+        '''
+        the "clear_buffer()" function clears any buffered input (such as keyboard keys used to navigate through the menu)
+        so that they don't populate input fields.
+        '''
         clear_buffer()
 
         # this ensures that when changing pages, the selection returns to the top of the page
@@ -75,11 +78,18 @@ class menu(object):
                 color_theme.set_theme(theme)             
         last_theme = theme
 
-        # get the total amount of menu_options loaded into the menu, minus any "_skip_" options.
+        # get the total amount of menu_options loaded into the menu, minus any "_skip_" or empty string options.
         # if the choice goes above or below the number of loaded menu items, return to 1 or total.
         # this ensures that the options scroll in the desired way.
         total_options = 0
-        total_options = len(menu_items) - menu_items.count('_skip_')
+        #total_options = len(menu_items) - menu_items.count('')
+        invalid_options = 0
+        valid_options = len(menu_items)
+        for item in menu_items:
+            if item in ['', ' ', '_skip_']:
+                invalid_options += 1
+        total_options = valid_options - invalid_options
+
         if choice > total_options:
             choice = 1
         if choice < 1:
@@ -147,7 +157,6 @@ class menu(object):
     def terminate(self):
         clear_buffer()
         cls()
-        del self
         return
 
 #check that user is using the correct OS and version of python
@@ -155,3 +164,8 @@ if system().lower() != 'windows':
     raise menuException(f'invalid operating system: "{system()}"\nmenu.py currently only works on windows machines.')
 if int(python_version_tuple()[0]) < 3 or int(python_version_tuple()[1]) < 6:
     raise menuException(f'invalid python version: "{python_version()}"\nmenu.py makes use of features, such as f-strings, that require python 3.6 or newer.')
+
+try:
+    setrecursionlimit(10**6)
+except:
+    pass
