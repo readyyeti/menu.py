@@ -1,6 +1,7 @@
 # menu.py
 [![PyPI](https://img.shields.io/pypi/v/menu.py?color=6724ff&label=PyPI&style=flat-square)](https://pypi.org/project/menu.py/)
-![Platform](https://img.shields.io/badge/platform-windows-6724ff?style=flat-square)
+[![Platform](https://img.shields.io/badge/platform-windows-6724ff?style=flat-square)](https://pypi.org/project/menu.py/)
+[![Version](https://img.shields.io/badge/python-3.6%2B-6724ff)](https://pypi.org/project/menu.py/)
 [![GitHub last commit](https://img.shields.io/github/last-commit/readyyeti/menu.py?color=6724ff&style=flat-square)](https://github.com/readyyeti/menu.py)
 
 created by: deadyeti</br>
