@@ -104,4 +104,4 @@ while True:
 ```
 </br>
 
-For a more in-depth example, check out the *example.py* file
+For a more in-depth example, check out the [*example.py*](https://github.com/readyyeti/menu.py/blob/main/menu/example.py) file
