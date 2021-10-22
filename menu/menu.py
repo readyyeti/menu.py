@@ -15,7 +15,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.37'
+version = '0.2.39'
 
 __all__=[
     'menu',
@@ -106,7 +106,7 @@ class menu(object):
                 print(f' {color_theme.text}{menu_text}{color_theme.end}')
             elif isinstance(menu_text, list) == True:
                 for item in menu_text:
-                    if item == '_skip_':
+                    if item in '_skip_':
                         print('')
                         continue
                     print(f' {color_theme.text}{item}{color_theme.end}')
@@ -124,10 +124,10 @@ class menu(object):
             menu_option(i, item, True).print()
         elif isinstance(menu_items, list) == True:
             for item in menu_items:
-                if item == '_skip_':
+                if item in ['', ' ', '_skip_']:
                     print('')
                     continue
-                if i == choice:
+                elif i == choice:
                     menu_option(i, item, True).print()
                 else:
                     menu_option(i, item).print()

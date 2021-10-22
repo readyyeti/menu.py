@@ -63,7 +63,7 @@ def main_menu():
    options = [
       'option #1',    # CASE 1
       'option #2',    # CASE 2
-      '_skip_',       # _skip_ is ignored by menu.py
+      '_skip_',       # # "_skip_", " " and "" can be used to create a blank line without messing up the selections
       'exit'          # CASE 3
    ]
 
