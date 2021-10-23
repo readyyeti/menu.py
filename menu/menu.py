@@ -16,7 +16,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.8'
+version = '0.3.9'
 
 __all__=[
     'menu',
@@ -67,8 +67,8 @@ class menu(object):
         menu_text_list = []
         bList = False
 
+        global _previous_pages
         if page_name not in _previous_pages:
-            global _previous_pages
             check_types(page_name, menu_items, menu_text, theme)
             _previous_pages.append(page_name)
 
