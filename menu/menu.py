@@ -15,13 +15,13 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.44'
+version = '0.2.45'
 
 __all__=[
     'menu',
     'version',
-    'menu.tick_rate',
-    'menu.selection_delay'
+    'self.tick_rate',
+    'self.selection_delay'
 ]
 
 choice = 1
