@@ -3,6 +3,7 @@ import keyboard as k
 from time import sleep
 from platform import python_version, system, python_version_tuple
 from sys import setrecursionlimit
+from os import system
 
 # import functions
 from .functions.cls import *
@@ -15,7 +16,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.48'
+version = '0.2.49'
 
 __all__=[
     'menu',
