@@ -15,7 +15,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.4'
+version = '0.3.5'
 
 __all__=[
     'menu',
@@ -97,7 +97,7 @@ class menu(object):
         # format menu_text input
         if menu_text != None:
             if isinstance(menu_text, str) == True: # if menu_text is string
-                menu_text = f'{color_theme.text}{menu_text}{color_theme.end}'
+                formatted_menu_text = f'{color_theme.text}{menu_text}{color_theme.end}'
             elif isinstance(menu_text, list) == True: # if menu_text is list
                 bList = True
                 for item in menu_text:
@@ -116,8 +116,8 @@ class menu(object):
         clear_buffer()
         cls()                                   # clear terminal screen FIXME: this is causing flickering, there must be another way
         print_header(self.name, page_name)      # print the menu header
-        if bList == True:
-            print(f' {menu_text}')
+        if bList == False:
+            print(f' {formatted_menu_text}')
         else:
             for item in menu_text_list:
                 print(f' {item}')
