@@ -15,7 +15,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.2'
+version = '0.3.3'
 
 __all__=[
     'menu',
@@ -108,9 +108,7 @@ class menu(object):
         if len(menu_items) <= 0:
             raise Exception('menu_items *must* contain at least one menu item')
         
-        clear_buffer()                          # clear any buffered inputs
-        sleep(self.selection_delay)
-        cls()                                  # clear terminal screen FIXME: this is causing flickering, there must be another way
+        cls()                                   # clear terminal screen FIXME: this is causing flickering, there must be another way
         print_header(self.name, page_name)      # print the menu header
         if menu_text != None:
             print(f' {menu_text}')
@@ -135,7 +133,7 @@ class menu(object):
             raise menuException('menu_items *must* be a list')
 
         # l00p until user selects an item in the menu
-        #sleep(self.selection_delay)
+        sleep(self.selection_delay)
         while not k.is_pressed('enter'):
             if k.is_pressed('s'):
                 try:
@@ -148,7 +146,7 @@ class menu(object):
                     choice -= 1
                     return self.generate(page_name, menu_items, menu_text, theme)
                 except:
-                    self.terminate()
+                    return
             sleep(self.tick_rate)
         
         clear_buffer()
