@@ -42,11 +42,6 @@ class menu(object):
 
     def __init__(self, program_name):
         self.name = program_name
-        self.tick_rate = menu.tick_rate
-        self.selection_delay = menu.selection_delay
-        self.keybind_next = menu.keybind_next
-        self.keybind_prev = menu.keybind_prev
-        self.keybind_sel = menu.keybind_sel
 
     def generate(self, page_name:str, menu_items:list, menu_text:list|str = None, theme:str = None):
 
@@ -146,21 +141,21 @@ class menu(object):
             raise menuException('menu_items *must* be a list')
 
         # l00p until user selects an item in the menu
-        sleep(self.selection_delay)
-        while not k.is_pressed('enter'):
-            if k.is_pressed('s'):
+        sleep(menu.selection_delay)
+        while not k.is_pressed(menu.keybind_sel):
+            if k.is_pressed(menu.keybind_prev):
                 try:
                     choice += 1
                     return self.generate(page_name, menu_items, menu_text, theme)
                 except:
                     return
-            elif k.is_pressed('w'):
+            elif k.is_pressed(menu.keybind_next):
                 try:
                     choice -= 1
                     return self.generate(page_name, menu_items, menu_text, theme)
                 except:
                     return
-            sleep(self.tick_rate)
+            sleep(menu.tick_rate)
         
         clear_buffer()
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
