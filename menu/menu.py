@@ -19,13 +19,18 @@ version = '0.2.43'
 
 __all__=[
     'menu',
-    'version'
+    'version',
+    'menu.tick_rate',
+    'menu.selection_delay'
 ]
 
 choice = 1
 last_page = None
 last_teme = ''
 last_theme = ''
+
+# ghetto-cache
+prev_menu_text = ''
 
 #selection_delay = 0.22  # 0.22 seems best
 #refresh_rate = 0.01     # 0.01 seems appropriate
@@ -38,7 +43,7 @@ class menu(object):
         self.tick_rate = 0.01
         self.selection_delay = 0.30 
 
-    def generate(self, page_name:str, menu_items:list, menu_text:list = None, theme:str = None):
+    def generate(self, page_name:str, menu_items:list, menu_text:list|str = None, theme:str = None):
 
         '''
         generates an in-terminal selection menu that works both in windows command-prompt and powershell.
@@ -57,11 +62,10 @@ class menu(object):
         global last_page
         global last_theme
 
-        '''
-        the "clear_buffer()" function clears any buffered input (such as keyboard keys used to navigate through the menu)
-        so that they don't populate input fields.
-        '''
-        clear_buffer()
+        #caching
+        global prev_menu_text
+
+        menu_text_list = []
 
         # this ensures that when changing pages, the selection returns to the top of the page
         if last_page != None:
@@ -94,34 +98,37 @@ class menu(object):
         if choice < 1:
             choice = total_options
 
-
-        # clear terminal screen and print menu header
-        cls()
-        print_header(self.name, page_name)
-
-        # prints optional menu_text, if there is any.
+        # format menu_text input
         if menu_text != None:
-            if isinstance(menu_text, str) == True:
-                print(f' {color_theme.text}{menu_text}{color_theme.end}')
-            elif isinstance(menu_text, list) == True:
+            if isinstance(menu_text, str) == True: # if menu_text is string
+                menu_text = f' {color_theme.text}{menu_text}{color_theme.end}'
+            elif isinstance(menu_text, list) == True: # if menu_text is list
                 for item in menu_text:
-                    if item in '_skip_':
-                        print('')
+                    if item in ['_skip_', '', ' ']:
+                        menu_text_list.append('')
                         continue
-                    print(f' {color_theme.text}{item}{color_theme.end}')
+                    menu_text_list.append(f' {color_theme.text}{item}{color_theme.end}')
+                menu_text = None
             else:
-                raise menuException('menu_text must either be a string or a list')
-            print('')
+                raise menuException('menu_text *must* either be a string or a list')
+            prev_menu_text = menu_text
 
         # if no menu options are present, raise exception (can't have a menu with no options, can you?).
         if len(menu_items) <= 0:
-            raise Exception('menu must contain at least one menu item')
+            raise Exception('menu_items *must* contain at least one menu item')
+        
+        clear_buffer()                          # clear any buffered inputs
+        cls()                                   # clear terminal screen FIXME: this is causing flickering, there must be another way
+        print_header(self.name, page_name)      # print the menu header
+        if menu_text != None:
+            print(f'{menu_text}')
+        else:
+            for item in menu_text_list:
+                print(f'{item}')
 
         # print menu items
         i = 1
-        if isinstance(menu_items, str) == True:
-            menu_option(i, item, True).print()
-        elif isinstance(menu_items, list) == True:
+        if isinstance(menu_items, list) == True:
             for item in menu_items:
                 if item in ['', ' ', '_skip_']:
                     print('')
@@ -132,7 +139,7 @@ class menu(object):
                     menu_option(i, item).print()
                 i += 1
         else:
-            menuException('menu_items must either be a string or a list')
+            raise menuException('menu_items *must* be a list')
 
         # l00p until user selects an item in the menu
         sleep(self.selection_delay)

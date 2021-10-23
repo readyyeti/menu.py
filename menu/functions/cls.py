@@ -13,7 +13,7 @@ __all__=[
 def cls():
 
     try:
-        system('cls' if name=='nt' else 'clear')
+        system('cls||clear')
     except:
         raise menuException(f'critical error in cls() function in {__name__}.py')
 
