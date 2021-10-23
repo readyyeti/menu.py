@@ -15,7 +15,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.3'
+version = '0.3.4'
 
 __all__=[
     'menu',
@@ -33,10 +33,13 @@ last_theme = ''
 # menu master class
 class menu(object):
 
+    tick_rate = 0.01
+    selection_delay = 0.30
+
     def __init__(self, program_name):
         self.name = program_name
-        self.tick_rate = 0.01
-        self.selection_delay = 0.30 
+        self.tick_rate = menu.tick_rate
+        self.selection_delay = menu.selection_delay
 
     def generate(self, page_name:str, menu_items:list, menu_text:list|str = None, theme:str = None):
 
@@ -58,6 +61,7 @@ class menu(object):
         global last_theme
 
         menu_text_list = []
+        bList = False
 
         # this ensures that when changing pages, the selection returns to the top of the page
         if last_page != None:
@@ -95,12 +99,12 @@ class menu(object):
             if isinstance(menu_text, str) == True: # if menu_text is string
                 menu_text = f'{color_theme.text}{menu_text}{color_theme.end}'
             elif isinstance(menu_text, list) == True: # if menu_text is list
+                bList = True
                 for item in menu_text:
                     if item in ['_skip_', '', ' ']:
                         menu_text_list.append('')
                         continue
                     menu_text_list.append(f'{color_theme.text}{item}{color_theme.end}')
-                menu_text = None
             else:
                 raise menuException('menu_text *must* either be a string or a list')
 
@@ -108,9 +112,11 @@ class menu(object):
         if len(menu_items) <= 0:
             raise Exception('menu_items *must* contain at least one menu item')
         
+
+        clear_buffer()
         cls()                                   # clear terminal screen FIXME: this is causing flickering, there must be another way
         print_header(self.name, page_name)      # print the menu header
-        if menu_text != None:
+        if bList == True:
             print(f' {menu_text}')
         else:
             for item in menu_text_list:
