@@ -16,7 +16,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.9'
+version = '0.3.11'
 
 __all__=[
     'menu',
@@ -25,9 +25,8 @@ __all__=[
 
 choice = 1
 _previous_pages = []
-last_page = None
-last_teme = ''
-last_theme = ''
+_last_page = None
+_last_theme = ''
 
 #selection_delay = 0.22  # 0.22 seems best
 #refresh_rate = 0.01     # 0.01 seems appropriate
@@ -61,8 +60,8 @@ class menu(object):
         #    menu_text = menu_text
 
         global choice     
-        global last_page
-        global last_theme
+        global _last_page
+        global _last_theme
 
         menu_text_list = []
         bList = False
@@ -72,20 +71,19 @@ class menu(object):
             check_types(page_name, menu_items, menu_text, theme)
             _previous_pages.append(page_name)
 
-
         # this ensures that when changing pages, the selection returns to the top of the page
-        if last_page != None:
-            if last_page != page_name:
+        if _last_page != None:
+            if _last_page != page_name:
                 choice = 1
         else:
             choice = 1
-        last_page = page_name
+        _last_page = page_name
 
         # only set the theme when applicable
-        if last_theme != theme:
+        if _last_theme != theme:
             if theme != None:
                 color_theme.set_theme(theme)             
-        last_theme = theme
+        _last_theme = theme
 
         # get the total amount of menu_options loaded into the menu, minus any "_skip_" or empty string options.
         # if the choice goes above or below the number of loaded menu items, return to 1 or total.
@@ -115,12 +113,10 @@ class menu(object):
                         menu_text_list.append('')
                         continue
                     menu_text_list.append(f'{color_theme.text}{item}{color_theme.end}')
-            else:
-                raise menuException('menu_text *must* either be a string or a list')
 
         # if no menu options are present, raise exception (can't have a menu with no options, can you?).
         if len(menu_items) <= 0:
-            raise Exception('menu_items *must* contain at least one menu item')
+            raise menu_exception('menu_items *must* contain at least one menu item')
         
 
         clear_buffer()
@@ -145,8 +141,6 @@ class menu(object):
                 else:
                     menu_option(i, item).print()
                 i += 1
-        else:
-            raise menuException('menu_items *must* be a list')
 
         # l00p until user selects an item in the menu
         sleep(menu.selection_delay)
@@ -175,9 +169,9 @@ class menu(object):
 
 #check that user is using the correct OS and version of python
 if system().lower() != 'windows':
-    raise menuException(f'invalid operating system: "{system()}"\nmenu.py currently only works on windows machines.')
+    raise menu_exception(f'invalid operating system: "{system()}"\nmenu.py currently only works on windows machines.')
 if int(python_version_tuple()[0]) < 3 or int(python_version_tuple()[1]) < 6:
-    raise menuException(f'invalid python version: "{python_version()}"\nmenu.py makes use of features, such as f-strings, that require python 3.6 or newer.')
+    raise menu_exception(f'invalid python version: "{python_version()}"\nmenu.py makes use of features, such as f-strings, that require python 3.6 or newer.')
 
 try:
     setrecursionlimit(10**6)
