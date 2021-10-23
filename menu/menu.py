@@ -9,13 +9,14 @@ from .functions.cls import *
 from .functions.print_header import *
 from .functions.clear_buffer import *
 from .functions.debugprint import *
+from .functions.check_types import *
 
 # import classes
 from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.6'
+version = '0.3.8'
 
 __all__=[
     'menu',
@@ -23,6 +24,7 @@ __all__=[
 ]
 
 choice = 1
+_previous_pages = []
 last_page = None
 last_teme = ''
 last_theme = ''
@@ -36,11 +38,11 @@ class menu(object):
     tick_rate:float = 0.01          # variable refresh rate
     selection_delay:float = 0.30    # variable selection delay
 
-    keybind_next:str = 'w'          # keybind
-    keybind_prev:str = 's'          # keybind
+    keybind_next:str = 's'          # keybind
+    keybind_prev:str = 'w'          # keybind
     keybind_sel:str = 'enter'       # keybind
 
-    def __init__(self, program_name):
+    def __init__(self, program_name:str):
         self.name = program_name
 
     def generate(self, page_name:str, menu_items:list, menu_text:list|str = None, theme:str = None):
@@ -64,6 +66,12 @@ class menu(object):
 
         menu_text_list = []
         bList = False
+
+        if page_name not in _previous_pages:
+            global _previous_pages
+            check_types(page_name, menu_items, menu_text, theme)
+            _previous_pages.append(page_name)
+
 
         # this ensures that when changing pages, the selection returns to the top of the page
         if last_page != None:
@@ -143,13 +151,13 @@ class menu(object):
         # l00p until user selects an item in the menu
         sleep(menu.selection_delay)
         while not k.is_pressed(menu.keybind_sel):
-            if k.is_pressed(menu.keybind_prev):
+            if k.is_pressed(menu.keybind_next):
                 try:
                     choice += 1
                     return self.generate(page_name, menu_items, menu_text, theme)
                 except:
                     return
-            elif k.is_pressed(menu.keybind_next):
+            elif k.is_pressed(menu.keybind_prev):
                 try:
                     choice -= 1
                     return self.generate(page_name, menu_items, menu_text, theme)
