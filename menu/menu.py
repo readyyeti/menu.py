@@ -15,12 +15,11 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.42'
+version = '0.2.43'
 
 __all__=[
     'menu',
-    'version',
-    'selection_delay'
+    'version'
 ]
 
 choice = 1
