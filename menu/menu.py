@@ -29,9 +29,6 @@ last_page = None
 last_teme = ''
 last_theme = ''
 
-# ghetto-cache
-prev_menu_text = ''
-
 #selection_delay = 0.22  # 0.22 seems best
 #refresh_rate = 0.01     # 0.01 seems appropriate
 
@@ -61,9 +58,6 @@ class menu(object):
         global choice     
         global last_page
         global last_theme
-
-        #caching
-        global prev_menu_text
 
         menu_text_list = []
 
@@ -125,6 +119,7 @@ class menu(object):
         else:
             for item in menu_text_list:
                 print(f'{item}')
+        print('')
 
         # print menu items
         i = 1
