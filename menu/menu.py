@@ -15,13 +15,11 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.46'
+version = '0.2.48'
 
 __all__=[
     'menu',
-    'version',
-    'tick_rate',
-    'selection_delay'
+    'version'
 ]
 
 choice = 1
@@ -95,30 +93,29 @@ class menu(object):
         # format menu_text input
         if menu_text != None:
             if isinstance(menu_text, str) == True: # if menu_text is string
-                menu_text = f' {color_theme.text}{menu_text}{color_theme.end}'
+                menu_text = f'{color_theme.text}{menu_text}{color_theme.end}'
             elif isinstance(menu_text, list) == True: # if menu_text is list
                 for item in menu_text:
                     if item in ['_skip_', '', ' ']:
                         menu_text_list.append('')
                         continue
-                    menu_text_list.append(f' {color_theme.text}{item}{color_theme.end}')
+                    menu_text_list.append(f'{color_theme.text}{item}{color_theme.end}')
                 menu_text = None
             else:
                 raise menuException('menu_text *must* either be a string or a list')
-            prev_menu_text = menu_text
 
         # if no menu options are present, raise exception (can't have a menu with no options, can you?).
         if len(menu_items) <= 0:
             raise Exception('menu_items *must* contain at least one menu item')
         
         clear_buffer()                          # clear any buffered inputs
-        cls()                                   # clear terminal screen FIXME: this is causing flickering, there must be another way
+        system('cls||clear')                    # clear terminal screen FIXME: this is causing flickering, there must be another way
         print_header(self.name, page_name)      # print the menu header
         if menu_text != None:
-            print(f'{menu_text}')
+            print(f' {menu_text}')
         else:
             for item in menu_text_list:
-                print(f'{item}')
+                print(f' {item}')
         print('')
 
         # print menu items
