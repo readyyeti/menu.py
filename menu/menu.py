@@ -15,7 +15,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.5'
+version = '0.3.6'
 
 __all__=[
     'menu',
@@ -33,13 +33,20 @@ last_theme = ''
 # menu master class
 class menu(object):
 
-    tick_rate = 0.01
-    selection_delay = 0.30
+    tick_rate:float = 0.01          # variable refresh rate
+    selection_delay:float = 0.30    # variable selection delay
+
+    keybind_next:str = 'w'          # keybind
+    keybind_prev:str = 's'          # keybind
+    keybind_sel:str = 'enter'       # keybind
 
     def __init__(self, program_name):
         self.name = program_name
         self.tick_rate = menu.tick_rate
         self.selection_delay = menu.selection_delay
+        self.keybind_next = menu.keybind_next
+        self.keybind_prev = menu.keybind_prev
+        self.keybind_sel = menu.keybind_sel
 
     def generate(self, page_name:str, menu_items:list, menu_text:list|str = None, theme:str = None):
 
