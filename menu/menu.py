@@ -3,7 +3,7 @@ import keyboard as k
 from time import sleep
 from platform import python_version, system, python_version_tuple
 from sys import setrecursionlimit
-from os import system
+from os import system as clear
 
 # import functions
 from .functions.cls import *
@@ -16,7 +16,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.49'
+version = '0.3.01'
 
 __all__=[
     'menu',
@@ -110,7 +110,7 @@ class menu(object):
             raise Exception('menu_items *must* contain at least one menu item')
         
         clear_buffer()                          # clear any buffered inputs
-        system('cls||clear')                    # clear terminal screen FIXME: this is causing flickering, there must be another way
+        clear('cls||clear')                    # clear terminal screen FIXME: this is causing flickering, there must be another way
         print_header(self.name, page_name)      # print the menu header
         if menu_text != None:
             print(f' {menu_text}')
