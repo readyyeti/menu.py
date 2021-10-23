@@ -15,13 +15,12 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.2.41'
+version = '0.2.42'
 
 __all__=[
     'menu',
     'version',
-    'selection_delay',
-    'refresh_rate'
+    'selection_delay'
 ]
 
 choice = 1
@@ -29,14 +28,16 @@ last_page = None
 last_teme = ''
 last_theme = ''
 
-selection_delay = 0.22  # 0.22 seems best
-refresh_rate = 0.01     # 0.01 seems appropriate
+#selection_delay = 0.22  # 0.22 seems best
+#refresh_rate = 0.01     # 0.01 seems appropriate
 
 # menu master class
 class menu(object):
 
     def __init__(self, program_name):
         self.name = program_name
+        self.tick_rate = 0.01
+        self.selection_delay = 0.30 
 
     def generate(self, page_name:str, menu_items:list, menu_text:list = None, theme:str = None):
 
@@ -56,7 +57,6 @@ class menu(object):
         global choice     
         global last_page
         global last_theme
-        global re_iterations
 
         '''
         the "clear_buffer()" function clears any buffered input (such as keyboard keys used to navigate through the menu)
@@ -82,7 +82,6 @@ class menu(object):
         # if the choice goes above or below the number of loaded menu items, return to 1 or total.
         # this ensures that the options scroll in the desired way.
         total_options = 0
-        #total_options = len(menu_items) - menu_items.count('')
         invalid_options = 0
         valid_options = len(menu_items)
         for item in menu_items:
@@ -90,6 +89,7 @@ class menu(object):
                 invalid_options += 1
         total_options = valid_options - invalid_options
 
+        # allows menu to loop through the options
         if choice > total_options:
             choice = 1
         if choice < 1:
@@ -136,7 +136,7 @@ class menu(object):
             menuException('menu_items must either be a string or a list')
 
         # l00p until user selects an item in the menu
-        sleep(selection_delay)
+        sleep(self.selection_delay)
         while not k.is_pressed('enter'):
             if k.is_pressed('s'):
                 try:
@@ -150,7 +150,7 @@ class menu(object):
                     return self.generate(page_name, menu_items, menu_text, theme)
                 except:
                     self.terminate()
-            sleep(refresh_rate)
+            sleep(self.tick_rate)
         
         clear_buffer()
         return menu_option(choice, menu_items[choice-1], menu_items[choice-1]).select()
