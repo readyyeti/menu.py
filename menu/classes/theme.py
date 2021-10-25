@@ -8,6 +8,23 @@ __all__=[
     'formatting'
 ]
 
+class theme(object):
+
+    def __init__(self, theme:str = 'white', bSimple:bool = True):
+        if type(theme) != str:
+            raise menu_type_exception(f'class parameter "theme" must be a string, not {type(theme)}')
+        self.theme = theme
+        self.bSimple = bSimple
+        if bSimple == True:
+            self.set(self.theme)
+        
+    def set(self, theme):
+        pass
+
+    def complex(self, **kwargs:str):
+        pass
+
+
 class color_theme:
 
     # default color theme (white)
