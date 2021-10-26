@@ -10,13 +10,14 @@ from .functions.print_header import *
 from .functions.clear_buffer import *
 from .functions.debugprint import *
 from .functions.check_types import *
+from .functions.menuprint import *
 
 # import classes
 from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.11'
+version = '0.3.12'
 
 __all__=[
     'menu',
