@@ -1,6 +1,6 @@
 # exception masterclass
 
-__all__=[
+__all__= [
     'menu_exception',
     'menu_type_exception',
     'menu_import_exception'

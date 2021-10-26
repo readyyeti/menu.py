@@ -17,7 +17,7 @@ from .classes.theme import *
 from .classes.exceptions import *
 from .classes.menu_options import *
 
-version = '0.3.12'
+version = '0.3.13'
 
 __all__=[
     'menu',

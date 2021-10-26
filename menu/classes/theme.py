@@ -76,15 +76,15 @@ class formatting:
         elif isinstance(title_sep, str):
             formatting.title_sep = title_sep
         else:
-            raise menuException('title_sep must be a string')
+            raise menu_exception('title_sep must be a string')
         
 
         if page_brackets == None:
             formatting.page_brackets = ''
         elif isinstance(page_brackets, list):
             if len(page_brackets) != 2:
-                raise menuException(f'page_brackets MUST be a list containing exactly 2 items, your list contains {len(page_brackets)} item(s)')
+                raise menu_exception(f'page_brackets MUST be a list containing exactly 2 items, your list contains {len(page_brackets)} item(s)')
             else:
                 formatting.page_brackets = page_brackets
         else:
-            raise menuException(f'page_brackets MUST be a list containing exactly 2 items. You entered a {type(page_brackets)}')
+            raise menu_exception(f'page_brackets MUST be a list containing exactly 2 items. You entered a {type(page_brackets)}')

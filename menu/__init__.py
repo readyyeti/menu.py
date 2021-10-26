@@ -25,7 +25,6 @@ from .classes.theme import formatting
 __all__ = [
     'menu',
     'menuprint',
-    'menuprint_error',
     'menuinput',
     'formatting'
 ]
