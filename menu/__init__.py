@@ -8,19 +8,11 @@ copyright (c) 2021-present deadyeti
 MIT License, see LICENSE for more details.
 """
 
-# import functions
-#from .menu import generate
-#from .menu import terminate
-
-# import classes
-#from .menu import cprint
-#from .menu import eprint
-
 # import modules
 from .menu import *
-from .functions.menuinput import *
-from .functions.menuprint import *
-from .classes.theme import formatting
+from menu.functions.menuinput import *
+from menu.functions.menuprint import *
+from menu.classes.theme import formatting
 
 __all__ = [
     'menu',
